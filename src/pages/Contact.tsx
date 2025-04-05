@@ -2,7 +2,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
-import { MapPin, Mail, Phone, Clock } from 'lucide-react';
+import { MapPin, Mail, Phone, Clock, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 
 const Contact = () => {
   return (
