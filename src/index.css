@@ -83,4 +83,15 @@
     @apply absolute rounded-full bg-blue-gradient opacity-10 blur-sm;
     animation: particles-flow 25s linear infinite;
   }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.7;
+      transform: scale(1.2);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.3);
+    }
+  }
 }

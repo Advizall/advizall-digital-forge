@@ -104,12 +104,21 @@ const HeroSection = () => {
           </div>
         </div>
         
-        <div className="relative aspect-square max-w-lg mx-auto animate-float">
-          <img
-            src="/lovable-uploads/039859B6-5911-4D55-993B-6E74B1D840DF.png"
-            alt="Advizall Logo"
-            className="object-contain w-full h-full shadow-glow-lg"
-          />
+        <div className="relative flex items-center justify-center mx-auto">
+          <div className="absolute w-full h-full rounded-full 
+                          bg-gradient-to-r from-advizall-vividBlue-dark/40 to-advizall-vividBlue-light/40 
+                          blur-3xl opacity-70 animate-pulse-glow z-0"
+               style={{
+                 filter: 'blur(40px)',
+                 transform: 'scale(1.2)',
+               }}></div>
+          <div className="relative z-10 w-full max-w-md animate-float">
+            <img
+              src="/lovable-uploads/039859B6-5911-4D55-993B-6E74B1D840DF.png"
+              alt="Advizall Logo"
+              className="object-contain w-full h-full"
+            />
+          </div>
         </div>
       </div>
     </section>
