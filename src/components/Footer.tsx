@@ -30,7 +30,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="flex items-center">
               <img
-                src="/lovable-uploads/bda58480-71a6-4e95-8968-2d40a054a5e1.png"
+                src="/lovable-uploads/039859B6-5911-4D55-993B-6E74B1D840DF.png"
                 alt="Advizall Logo"
                 className="h-12"
               />

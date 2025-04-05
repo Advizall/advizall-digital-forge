@@ -106,7 +106,7 @@ const HeroSection = () => {
         
         <div className="relative aspect-square max-w-lg mx-auto animate-float">
           <img
-            src="/lovable-uploads/bda58480-71a6-4e95-8968-2d40a054a5e1.png"
+            src="/lovable-uploads/039859B6-5911-4D55-993B-6E74B1D840DF.png"
             alt="Advizall Logo"
             className="object-contain w-full h-full shadow-glow-lg"
           />
