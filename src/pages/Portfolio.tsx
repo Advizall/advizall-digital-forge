@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 interface PortfolioItem {
   id: number;
@@ -111,12 +112,14 @@ const Portfolio = () => {
                         </a>
                       </div>
                     </div>
-                    <CardContent className="p-0 h-64 md:h-72">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
-                      />
+                    <CardContent className="p-0">
+                      <AspectRatio ratio={16/9} className="overflow-hidden">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </AspectRatio>
                     </CardContent>
                   </Card>
                 </motion.div>

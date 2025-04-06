@@ -1,3 +1,4 @@
+
 import { NavLink } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -70,8 +71,8 @@ const Footer = () => {
               <NavLink to="/about" className="text-advizall-silver-text hover:text-advizall-vividBlue-light transition-colors">
                 About Us
               </NavLink>
-              <NavLink to="/blog" className="text-advizall-silver-text hover:text-advizall-vividBlue-light transition-colors">
-                Blog
+              <NavLink to="/portfolio" className="text-advizall-silver-text hover:text-advizall-vividBlue-light transition-colors">
+                Portfolio
               </NavLink>
               <NavLink to="/contact" className="text-advizall-silver-text hover:text-advizall-vividBlue-light transition-colors">
                 Contact
