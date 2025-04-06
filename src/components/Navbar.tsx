@@ -70,10 +70,10 @@ const Navbar = () => {
             About
           </NavLink>
           <NavLink
-            to="/blog"
+            to="/portfolio"
             className="text-advizall-silver-text hover:text-advizall-white transition-colors animated-underline py-1"
           >
-            Blog
+            Portfolio
           </NavLink>
           <Button
             asChild
@@ -128,11 +128,11 @@ const Navbar = () => {
             About
           </NavLink>
           <NavLink
-            to="/blog"
+            to="/portfolio"
             className="text-advizall-silver-text hover:text-advizall-white transition-colors py-2 border-b border-advizall-silver-dark/20"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Blog
+            Portfolio
           </NavLink>
           <Button
             asChild
