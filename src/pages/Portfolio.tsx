@@ -6,6 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Skeleton } from '@/components/ui/skeleton';
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
 
 interface PortfolioItem {
   id: number;
@@ -62,10 +64,36 @@ const portfolioItems: PortfolioItem[] = [
 
 const Portfolio = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imageStatus, setImageStatus] = useState<Record<number, 'loading' | 'loaded' | 'error'>>({});
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Initialize all images as loading
+    const initialStatus: Record<number, 'loading' | 'loaded' | 'error'> = {};
+    portfolioItems.forEach(item => {
+      initialStatus[item.id] = 'loading';
+    });
+    setImageStatus(initialStatus);
+    
+    // Preload images
+    portfolioItems.forEach(item => {
+      const img = new Image();
+      img.src = item.image;
+      img.onload = () => {
+        setImageStatus(prev => ({ ...prev, [item.id]: 'loaded' }));
+      };
+      img.onerror = () => {
+        console.error(`Failed to load image: ${item.image}`);
+        setImageStatus(prev => ({ ...prev, [item.id]: 'error' }));
+      };
+    });
   }, []);
+
+  const handleImageError = (id: number) => {
+    console.log(`Image ${id} failed to load, using fallback`);
+    setImageStatus(prev => ({ ...prev, [id]: 'error' }));
+  };
 
   return (
     <div className="min-h-screen bg-advizall-charcoal">
@@ -98,13 +126,13 @@ const Portfolio = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card className="relative overflow-hidden group h-full bg-advizall-darkGray border-advizall-darkBlue-light/30 hover:border-advizall-vividBlue-light/50 transition-all duration-300">
-                    <div className="absolute inset-0 bg-gradient-to-t from-advizall-charcoal/90 via-advizall-charcoal/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
-                      <div className="space-y-2 bg-advizall-charcoal/80 p-4 rounded-md w-full backdrop-blur-sm">
-                        <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                        <p className="text-advizall-silver-text text-sm">{item.description}</p>
+                    <div className="absolute inset-0 bg-advizall-charcoal/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 z-10 backdrop-blur-sm">
+                      <div className="text-center space-y-3">
+                        <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
+                        <p className="text-advizall-silver-text">{item.description}</p>
                         <a 
                           href={item.url} 
-                          className="inline-flex items-center text-advizall-vividBlue-light hover:text-advizall-vividBlue-light/80 transition-colors text-sm mt-2"
+                          className="inline-flex items-center bg-advizall-vividBlue-light/90 hover:bg-advizall-vividBlue-light px-4 py-2 rounded-md text-white transition-colors text-sm mt-2"
                           target="_blank" 
                           rel="noopener noreferrer"
                         >
@@ -113,24 +141,29 @@ const Portfolio = () => {
                       </div>
                     </div>
                     <CardContent className="p-0">
-                      <AspectRatio ratio={16/9} className="overflow-hidden">
+                      <AspectRatio ratio={16/9} className="overflow-hidden bg-advizall-darkGray">
+                        {imageStatus[item.id] === 'loading' && (
+                          <Skeleton className="w-full h-full absolute inset-0" />
+                        )}
                         <picture>
-                          {/* Fallback to WebP for better compatibility */}
-                          <source srcSet={`${item.image}?format=webp`} type="image/webp" />
-                          {/* Original format as fallback */}
+                          <source type="image/png" srcSet={item.image} />
                           <img
                             src={item.image}
                             alt={item.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             loading="lazy"
-                            onError={(e) => {
-                              // Fallback if image fails to load
-                              const target = e.target as HTMLImageElement;
-                              console.log(`Image failed to load: ${target.src}`);
-                              target.onerror = null; // Prevent infinite loop
-                              target.src = "/placeholder.svg"; // Use placeholder
+                            onError={() => handleImageError(item.id)}
+                            style={{ 
+                              opacity: imageStatus[item.id] === 'loaded' ? 1 : 0,
+                              transition: 'opacity 0.3s ease-in-out'
                             }}
+                            onLoad={() => setImageStatus(prev => ({ ...prev, [item.id]: 'loaded' }))}
                           />
+                          {imageStatus[item.id] === 'error' && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-advizall-darkGray text-advizall-silver-text">
+                              <p className="text-sm">{item.title}</p>
+                            </div>
+                          )}
                         </picture>
                       </AspectRatio>
                     </CardContent>
