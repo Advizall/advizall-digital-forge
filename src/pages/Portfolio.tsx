@@ -98,8 +98,8 @@ const Portfolio = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card className="relative overflow-hidden group h-full bg-advizall-darkGray border-advizall-darkBlue-light/30 hover:border-advizall-vividBlue-light/50 transition-all duration-300">
-                    <div className="absolute inset-0 bg-gradient-to-t from-advizall-charcoal/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
-                      <div className="space-y-2">
+                    <div className="absolute inset-0 bg-gradient-to-t from-advizall-charcoal/90 via-advizall-charcoal/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10">
+                      <div className="space-y-2 bg-advizall-charcoal/80 p-4 rounded-md w-full backdrop-blur-sm">
                         <h3 className="text-xl font-semibold text-white">{item.title}</h3>
                         <p className="text-advizall-silver-text text-sm">{item.description}</p>
                         <a 
@@ -114,11 +114,24 @@ const Portfolio = () => {
                     </div>
                     <CardContent className="p-0">
                       <AspectRatio ratio={16/9} className="overflow-hidden">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
+                        <picture>
+                          {/* Fallback to WebP for better compatibility */}
+                          <source srcSet={`${item.image}?format=webp`} type="image/webp" />
+                          {/* Original format as fallback */}
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="lazy"
+                            onError={(e) => {
+                              // Fallback if image fails to load
+                              const target = e.target as HTMLImageElement;
+                              console.log(`Image failed to load: ${target.src}`);
+                              target.onerror = null; // Prevent infinite loop
+                              target.src = "/placeholder.svg"; // Use placeholder
+                            }}
+                          />
+                        </picture>
                       </AspectRatio>
                     </CardContent>
                   </Card>
