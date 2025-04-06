@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -21,21 +20,21 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
     title: "Miles Cabinets Refacing",
-    image: "/lovable-uploads/Miles Cabinets Refacing.png",
+    image: "/lovable-uploads/Miles%20Cabinets%20Refacing.png",
     description: "Premium cabinet refacing services website with a modern, elegant design.",
     url: "#",
   },
   {
     id: 2,
     title: "PACC Solutions LLC",
-    image: "/lovable-uploads/PACC Solutions LLC.png",
+    image: "/lovable-uploads/PACC%20Solutions%20LLC.png",
     description: "Professional business solutions platform with custom client portal integration.",
     url: "#",
   },
   {
     id: 3,
     title: "Extreme Solutions Cleaning",
-    image: "/lovable-uploads/Extreme Solutions Cleaning.png",
+    image: "/lovable-uploads/Extreme%20Solutions%20Cleaning.png",
     description: "Commercial and residential cleaning services site with booking functionality.",
     url: "#",
   },
@@ -49,7 +48,7 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 5,
     title: "Extreme Solutions Inc",
-    image: "/lovable-uploads/Extreme Solutions Inc.png",
+    image: "/lovable-uploads/Extreme%20Solutions%20Inc.png",
     description: "Corporate solutions provider featuring integrated customer management system.",
     url: "#",
   },
