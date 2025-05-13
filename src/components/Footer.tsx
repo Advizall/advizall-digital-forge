@@ -86,16 +86,16 @@ const Footer = () => {
               <div className="flex items-start">
                 <MapPin size={18} className="text-advizall-vividBlue-light mr-3 mt-1 flex-shrink-0" />
                 <p className="text-advizall-silver-text text-sm">
-                  123 Digital Avenue, Chicago, IL 60007
+                  Chicago, IL 60655
                 </p>
               </div>
               <div className="flex items-center">
                 <Phone size={18} className="text-advizall-vividBlue-light mr-3 flex-shrink-0" />
-                <p className="text-advizall-silver-text text-sm">(312) 555-6789</p>
+                <p className="text-advizall-silver-text text-sm">(407) 453-6766</p>
               </div>
               <div className="flex items-center">
                 <Mail size={18} className="text-advizall-vividBlue-light mr-3 flex-shrink-0" />
-                <p className="text-advizall-silver-text text-sm">info@advizall.com</p>
+                <p className="text-advizall-silver-text text-sm">contact@advizall.com</p>
               </div>
             </div>
           </div>
